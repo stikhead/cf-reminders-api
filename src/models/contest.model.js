@@ -1,13 +1,22 @@
 import mongoose from "mongoose";
 
 const contestSchema = new mongoose.Schema({
-    contestId: {
+    event: {
         type: String,
         required: true
     },
-    platform: {
+    resource: {
+      type: String,
+      enum: ['leetcode', 'codeforces', 'codechef', 'atcoder'],
+      required: true  
+    },
+    resource_id: {
+        type: Number,
+        enum: [],
+        required: true
+    },
+    eventLink: {
         type: String,
-        enum: ['leetcode', 'codeforces', 'codechef', 'atcoder'],
         required: true
     },
     startTime: {
@@ -18,9 +27,8 @@ const contestSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    isUpcoming: {
-        type: Boolean,
-        default: true
+    durationSeconds: {
+        type: Number
     },
     difficulty: {
 

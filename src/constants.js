@@ -1,1 +1,1 @@
-export const DB_NAME = "cpreminders";
+export const DB_NAME = "CPReminder";
