@@ -1,22 +1,18 @@
 import mongoose from "mongoose";
 
 const contestSchema = new mongoose.Schema({
-    event: {
-        type: String,
-        required: true
-    },
-    resource: {
-      type: String,
-      enum: ['leetcode', 'codeforces', 'codechef', 'atcoder'],
-      required: true  
-    },
-    resource_id: {
+    clistId: {
         type: Number,
-        enum: [],
+        required: true,
+        unique: true,
+        index: true
+    },
+    host: {
+        type: String,
         required: true
     },
-    eventLink: {
-        type: String,
+    durationSeconds: {
+        type: Number,
         required: true
     },
     startTime: {
@@ -27,14 +23,21 @@ const contestSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    durationSeconds: {
-        type: Number
+    resource: {
+        type: String,
+        enum: ['LeetCode', 'Codeforces', 'CodeChef', 'AtCoder'],
+        required: true  
     },
-    difficulty: {
-
-    }
-    
-
-}, {});
+    resource_id: {
+        type: Number,
+        required: true
+    },
+    eventLink: {
+        type: String,
+        required: true
+    },
+}, { 
+    timestamps: true 
+});
 
 export const Contest = mongoose.model('Contest', contestSchema);

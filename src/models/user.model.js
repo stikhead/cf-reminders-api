@@ -1,6 +1,7 @@
 import "dotenv/config"
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 const userSchema = new mongoose.Schema({
     email: {
         type: String,
@@ -13,7 +14,8 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true // basic jwt later change to false when oauth
+        required: true, // basic jwt later change to false when oauth
+        select: false
     },
 
     refreshToken: {
@@ -35,6 +37,12 @@ const userSchema = new mongoose.Schema({
         }
     },
 
+    savedContests: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Contest',
+        }
+    ],
 
     reminderPreference: {
         calender: {

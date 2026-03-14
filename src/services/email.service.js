@@ -23,7 +23,7 @@ const sendVerificationEmail = async (email, token)=>{
         
         console.log("Message sent: %s", info.messageId);
         console.log("Preview: %s", nodemailer.getTestMessageUrl(info))
-    
+        
     } catch (error) {
         console.log(`an error occured: ${error}`)
         throw error;
